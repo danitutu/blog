@@ -1,0 +1,9 @@
+<div>
+    <div class="row g-5">
+    <a th:href="@{/}">Homepage</a>
+    <h1>Admin</h1>
+    </div>
+    <div layout:decorate="~{layout}" layout:fragment="content" class="row g-5">
+        <section layout:fragment="content"></section>
+    </div>
+</div>

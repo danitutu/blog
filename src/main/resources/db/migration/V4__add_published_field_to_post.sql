@@ -1,0 +1,1 @@
+alter table post add published_at timestamp;

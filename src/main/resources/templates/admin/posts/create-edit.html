@@ -1,0 +1,81 @@
+<div layout:decorate="~{admin/layout}" layout:fragment="content">
+    <h1>Create Post</h1>
+    <style>
+        .error {
+            color: red;
+        }
+
+        .fieldError {
+            color: red;
+        }
+    </style>
+    <div class="row">
+        <div class="col">
+            <form action="#" th:action="${action}" method="post" th:object="${input}">
+                <div th:if="${#fields.hasErrors('global')}">
+                    <h3>Global errors:</h3>
+                    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error"/>
+                </div>
+                <div th:if="${#fields.hasAnyErrors()}">
+                    <p th:each="err : ${#fields.allErrors()}" th:text="${err}">...</p>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" id="title" th:field="*{title}" th:errorclass="fieldError" class="form-control">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('title')}" th:text="${err}" class="error"/>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <label for="summary" class="form-label">Summary</label>
+                    <textarea content="text" id="summary" rows="5" cols="50" th:field="*{summary}"
+                              th:errorclass="fieldError" class="form-control"></textarea>
+                    <ul>
+                        <li th:each="err : ${#fields.errors('summary')}" th:text="${err}" class="error"/>
+                    </ul>
+                </div>
+
+                <div class="mb-3">
+                    <label for="content" class="form-label">Content</label>
+                    <textarea content="text" id="content" rows="15" cols="50" onkeyup="render()" th:field="*{content}"
+                              th:errorclass="fieldError" class="form-control"></textarea>
+                    <ul>
+                        <li th:each="err : ${#fields.errors('content')}" th:text="${err}" class="error"/>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <label for="tags" class="form-label">Tags (separate by ,)</label>
+                    <input type="text" id="tags" th:field="*{tags}" th:errorclass="fieldError" class="form-control">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('tags')}" th:text="${err}" class="error"/>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <label for="friendly-url" class="form-label">Friendly URL</label>
+                    <input type="text" id="friendly-url" th:field="*{friendlyUrl}" th:errorclass="fieldError"
+                           class="form-control">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('friendlyUrl')}" th:text="${err}" class="error"/>
+                    </ul>
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h2>Preview</h2>
+            <hr/>
+            <div id="renderedContent"></div>
+            <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+            <script>
+                function render() {
+                    let content = document.getElementById('content').value;
+                    document.getElementById('renderedContent').innerHTML = marked.parse(content);
+                    convertToMermaid()
+                }
+            </script>
+            <div th:insert="mermaid-convertor"></div>
+        </div>
+    </div>
+</div>

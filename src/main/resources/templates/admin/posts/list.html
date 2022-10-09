@@ -1,0 +1,31 @@
+<div layout:decorate="~{admin/layout}" layout:fragment="content">
+    <h1>Posts</h1>
+    <a th:href="@{/admin/posts/create}">Create</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Published At</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td><a th:href="${'/admin/posts/'+post.id+'/edit'}" th:text="${post.title}"></a></td>
+            <td th:text="${post.createdAt}">${post.createdAt}</td>
+            <td th:text="${post?.publishedAt}">${post.publishedAt}</td>
+            <td>
+                <form th:if="${post.publishedAt == null}" th:action="${'/admin/posts/'+post.id+'/publish'}"
+                      method="post">
+                    <button type="submit" class="btn btn-link">Publish</button>
+                </form>
+                <form th:if="${post.publishedAt != null}" th:action="${'/admin/posts/'+post.id+'/unpublish'}"
+                      method="post">
+                    <button type="submit" class="btn btn-link">Unpublish</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

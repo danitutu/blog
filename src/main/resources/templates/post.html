@@ -1,0 +1,7 @@
+<div layout:decorate="~{with-default-sidebar}" layout:fragment="left-content">
+    <h1 th:text="${post.title}" class="display-5"></h1>
+    <p id="content" th:utext="${post.htmlContent}"></p>
+    <p th:text="'created at: ' + ${post.createdAt}"></p>
+    <p th:text="'tags: ' + ${post.tags}"></p>
+    <div th:insert="mermaid-convertor"></div>
+</div>

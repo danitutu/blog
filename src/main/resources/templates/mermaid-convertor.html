@@ -1,0 +1,12 @@
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  function convertToMermaid() {
+    // mermaid is looking for a "mermaid" class but the markdown generator makes it with "language-mermaid"
+    document.querySelectorAll(".language-mermaid").forEach(e => {
+      e.className = e.className + " mermaid"
+    })
+    mermaid.init()
+  }
+
+  convertToMermaid()
+</script>
