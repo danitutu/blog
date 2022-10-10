@@ -83,7 +83,7 @@ class AppController(
     fun adminPostsCreate(model: Model): String {
         model.addAttribute("input", PostService.CreatePostInput("", "", "", "", emptySet()))
         model.addAttribute("action", "/admin/posts/create")
-        return "/admin/posts/create-edit"
+        return "admin/posts/create-edit"
     }
 
     @PostMapping("/admin/posts/create")
@@ -116,7 +116,7 @@ class AppController(
             )
         }
         model.addAttribute("action", "/admin/posts/$postId/edit")
-        return "/admin/posts/create-edit"
+        return "admin/posts/create-edit"
     }
 
     @PostMapping("/admin/posts/{postId}/edit")
