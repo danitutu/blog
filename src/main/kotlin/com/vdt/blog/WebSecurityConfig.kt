@@ -32,7 +32,6 @@ class WebSecurityConfig {
                     .anyRequest().permitAll()
             }
             .httpBasic()
-        println(hasCert)
         if (hasCert) {
             http.requiresChannel { it.anyRequest().requiresSecure() }
         }
