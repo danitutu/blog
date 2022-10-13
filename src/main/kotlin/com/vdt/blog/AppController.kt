@@ -42,6 +42,7 @@ class AppController(
         val posts = postService.searchPosts(tagName = tagName)
         model.addAttribute("posts", posts)
         model.addAttribute("tagName", tagName)
+        model.addAttribute("mainTitle", tagName)
         return "home"
     }
 
@@ -50,6 +51,7 @@ class AppController(
         val post = postService.searchPosts().firstOrNull { it.friendlyUrl == friendlyUrl }
             ?: return "not-found"
         model.addAttribute("post", post)
+        model.addAttribute("mainTitle", post.title)
         return "post"
     }
 
