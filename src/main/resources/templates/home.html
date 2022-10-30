@@ -1,7 +1,7 @@
 <div layout:decorate="~{with-default-sidebar}" layout:fragment="left-content">
     <h3 th:if="${tagName != null}" th:text="${'Search results for tag: '+tagName}"></h3>
     <article th:each="post : ${posts}" class="blog-post">
-        <h2><a th:href="@{'/posts/'+${post.friendlyUrl}}" th:text="${post.title}"></a></h2>
+        <h2><a th:href="@{'/'+${post.friendlyUrl}}" th:text="${post.title}"></a></h2>
         <p class="blog-post-meta">
             <span th:text="${post.tags}"></span>
         </p>

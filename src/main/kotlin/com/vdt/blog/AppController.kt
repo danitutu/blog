@@ -46,7 +46,7 @@ class AppController(
         return "home"
     }
 
-    @GetMapping("/posts/{friendlyUrl}")
+    @GetMapping("/posts/{friendlyUrl}", "/{friendlyUrl}")
     fun postDetails(model: Model, @PathVariable friendlyUrl: String): String {
         val post = postService.searchPosts().firstOrNull { it.friendlyUrl == friendlyUrl }
             ?: return "not-found"
